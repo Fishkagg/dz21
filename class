@@ -1,0 +1,37 @@
+class Teacher:
+    def __init__(self, teacher_id, name):
+        self.teacher_id = teacher_id
+        self.name = name
+
+class Student:
+    def __init__(self, student_id, name):
+        self.student_id = student_id
+        self.name = name
+
+class StudyGroup:
+    def __init__(self, teacher, students):
+        self.teacher = teacher
+        self.students = students
+
+class StudyGroupService:
+    def form_study_group(self, teacher, student_list):
+        study_group = StudyGroup(teacher, student_list)
+        return study_group
+
+class StudyGroupController:
+    def __init__(self, service):
+        self.service = service
+
+    def create_study_group(self, teacher, student_list):
+        study_group = self.service.form_study_group(teacher, student_list)
+        return study_group
+
+# Example Usage
+teacher = Teacher(1, "John Doe")
+student1 = Student(101, "Alice")
+student2 = Student(102, "Bob")
+student_list = [student1, student2]
+
+service = StudyGroupService()
+controller = StudyGroupController(service)
+new_study_group = controller.create_study_group(teacher, student_list)
